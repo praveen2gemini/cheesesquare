@@ -31,4 +31,6 @@
   <string name="menu_night_mode_night">Night (always)</string>
   <string name="menu_night_mode_auto">Auto</string>
 
+  <string name="cheese_of_the_day">Cheese of the day</string>
+
 </resources>
