@@ -18,6 +18,7 @@ package com.support.android.designlibdemo;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -35,9 +36,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        View bottomSheet = findViewById(R.id.bottom_sheet);
+        View cheeseOfTheDayButton = findViewById(R.id.cheese_of_the_day_button);
+        setupBottomSheet(bottomSheet, cheeseOfTheDayButton);
     }
 
     @Override
@@ -157,6 +159,19 @@ public class MainActivity extends AppCompatActivity {
                 menuItem.setChecked(true);
                 mDrawerLayout.closeDrawers();
                 return true;
+            }
+        });
+    }
+
+    private void setupBottomSheet(View bottomSheet, View cheeseOfTheDay) {
+        // set hidden state by default
+        final BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+        cheeseOfTheDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         });
     }
